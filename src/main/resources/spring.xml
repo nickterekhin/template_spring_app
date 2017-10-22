@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:p="http://www.springframework.org/schema/p"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+       <bean id="serviceLoactor" class="terekhin.services.DefaultServiceLocator"/>
+
+       <bean id="clientService"
+             factory-bean="serviceLoactor"
+             factory-method="createClientServiceInstance"/>
+
+    <bean name="john-classic" class="terekhin.person.Person">
+            <property name="name" value="John Doe"/>
+            <property name="spouse" ref="john-modern"/>
+
+    </bean>
+    <bean name="john-modern" class="terekhin.person.Person" p:name="Jhon Doe" p:spouse-ref="jane"/>
+    <bean name="jane" class="terekhin.person.Person">
+            <property name="name" value="Jane Doe"/>
+    </bean>
+
+</beans>
