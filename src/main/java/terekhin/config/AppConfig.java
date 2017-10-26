@@ -13,7 +13,7 @@ public class AppConfig extends AbstractAnnotationConfigDispatcherServletInitiali
 
     @Override
     protected Class<?>[] getServletConfigClasses() {
-        return new Class<?>[]{CoreConfig.class};
+        return new Class<?>[]{MVCConfig.class};
     }
 
     @Override
