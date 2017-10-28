@@ -1,12 +1,17 @@
-package terekhin.config;
+package com.terekhin.config;
 
 import nz.net.ultraq.thymeleaf.LayoutDialect;
 import org.springframework.beans.BeansException;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Import;
+import org.springframework.core.env.ConfigurableEnvironment;
+import org.springframework.web.WebApplicationInitializer;
+import org.springframework.web.context.WebApplicationContext;
 import org.springframework.web.servlet.ViewResolver;
 import org.springframework.web.servlet.config.annotation.*;
 import org.thymeleaf.spring5.SpringTemplateEngine;
@@ -20,9 +25,13 @@ import org.thymeleaf.templateresolver.ITemplateResolver;
  */
 @Configuration
 @EnableWebMvc
-@ComponentScan("terekhin")
-public class MVCConfig extends WebMvcConfigurerAdapter implements ApplicationContextAware {
+@ComponentScan("com.terekhin")
+@Import({DataSourceConfig.class,HibernateConfig.class,DBTransactionConfig.class,AppPropertiesConfig.class})
+public class MVCConfig implements ApplicationContextAware, WebMvcConfigurer {
     private ApplicationContext applicationContext;
+
+    @Autowired
+    private ConfigurableEnvironment cnfEnv;
 
     public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {
         this.applicationContext = applicationContext;
@@ -40,6 +49,11 @@ public class MVCConfig extends WebMvcConfigurerAdapter implements ApplicationCon
     }
     public void configureDefaultServletHandling(DefaultServletHandlerConfigurer configurer) {
         configurer.enable();
+    }
+
+    @Override
+    public void addViewControllers(ViewControllerRegistry registry) {
+        registry.addViewController("/").setViewName("index");
     }
 
     @Bean
