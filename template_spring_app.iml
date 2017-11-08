@@ -3,13 +3,6 @@
   <component name="FacetManager">
     <facet type="Spring" name="Spring">
       <configuration>
-        <fileset id="fileset" name="Spring Application Context" removed="false">
-          <file>file://$MODULE_DIR$/src/main/resources/spring.xml</file>
-          <file>file://$MODULE_DIR$/src/main/java/terekhin/config/CoreConfig.java</file>
-        </fileset>
-        <fileset id="fileset2" name="Spring Application Context (2)" removed="false">
-          <file>file://$MODULE_DIR$/src/main/java/terekhin/config/MVCConfig.java</file>
-        </fileset>
         <fileset id="fileset3" name="Spring Application Context (3)" removed="false">
           <file>file://$MODULE_DIR$/src/main/java/com/terekhin/config/AppPropertiesConfig.java</file>
           <file>file://$MODULE_DIR$/src/main/java/com/terekhin/config/DataSourceConfig.java</file>
