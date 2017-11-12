@@ -16,7 +16,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 @EnableTransactionManagement
 public class DBTransactionConfig {
 
-    @Bean(name="hibernateTX")
+    @Bean(name="hibernate_TX")
     @Autowired
     public PlatformTransactionManager transactionManager(SessionFactory sessionFactory)
     {

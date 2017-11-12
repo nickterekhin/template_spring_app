@@ -1,6 +1,5 @@
 package com.terekhin.config;
 
-import com.sun.istack.internal.NotNull;
 import nz.net.ultraq.thymeleaf.LayoutDialect;
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,9 +10,6 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
 import org.springframework.core.env.ConfigurableEnvironment;
-import org.springframework.lang.NonNull;
-import org.springframework.web.WebApplicationInitializer;
-import org.springframework.web.context.WebApplicationContext;
 import org.springframework.web.servlet.ViewResolver;
 import org.springframework.web.servlet.config.annotation.*;
 import org.thymeleaf.spring5.SpringTemplateEngine;
@@ -35,7 +31,7 @@ public class MVCConfig implements ApplicationContextAware, WebMvcConfigurer {
     @Autowired
     private ConfigurableEnvironment cnfEnv;
 
-    public void setApplicationContext(@NotNull ApplicationContext applicationContext) throws BeansException {
+    public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {
         this.applicationContext = applicationContext;
     }
 
@@ -49,6 +45,12 @@ public class MVCConfig implements ApplicationContextAware, WebMvcConfigurer {
     {
 
     }
+
+    @Override
+    public void addResourceHandlers(ResourceHandlerRegistry registry) {
+        registry.addResourceHandler("/content/**").addResourceLocations("/content/**");
+    }
+
     public void configureDefaultServletHandling(DefaultServletHandlerConfigurer configurer) {
         configurer.enable();
     }
