@@ -3,6 +3,7 @@ package com.terekhin.domain;
 import org.joda.time.DateTime;
 
 import javax.persistence.*;
+import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -25,7 +26,7 @@ public class User implements IBaseModel {
 
         @ManyToMany(fetch = FetchType.EAGER)
         @JoinTable(name="users_roles",joinColumns = @JoinColumn(name = "user_id", referencedColumnName = "id"), inverseJoinColumns = @JoinColumn(name = "role_id", referencedColumnName = "id"))
-        private Set<Group> groups = new HashSet<Group>(0);
+        private Collection<Group> groups;
 
         public User() {
         }
@@ -80,11 +81,11 @@ public class User implements IBaseModel {
                 this.IP = IP;
         }
 
-        public Set<Group> getGroups() {
+        public Collection<Group> getGroups() {
                 return groups;
         }
 
-        public void setGroups(Set<Group> groups) {
+        public void setGroups(Collection<Group> groups) {
                 this.groups = groups;
         }
 

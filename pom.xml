@@ -36,6 +36,9 @@
         <junit.version>4.12</junit.version>
         <mockito.version>1.10.19</mockito.version>
         <joda.version>2.9.9</joda.version>
+        <jetty.version>9.4.7.v20170914</jetty.version>
+        <slf4j.version>1.7.25</slf4j.version>
+        <log4j.version>2.9.1</log4j.version>
     </properties>
     <dependencies>
         <dependency>
@@ -123,7 +126,23 @@
             <version>${mockito.version}</version>
         </dependency>
         <!--End Tests-->
-
+        <!--Logger-->
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
+            <version>${slf4j.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.logging.log4j</groupId>
+            <artifactId>log4j-core</artifactId>
+            <version>${log4j.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.logging.log4j</groupId>
+            <artifactId>log4j-api</artifactId>
+            <version>${log4j.version}</version>
+        </dependency>
+        <!--End Logger-->
         <!--DB dependencies-->
         <dependency>
             <groupId>org.springframework</groupId>
@@ -160,6 +179,12 @@
             <artifactId>commons-dbcp</artifactId>
             <version>${dbcp.version}</version>
         </dependency>
+        <!--Jetty server-->
+        <dependency>
+            <groupId>org.eclipse.jetty</groupId>
+            <artifactId>jetty-server</artifactId>
+            <version>${jetty.version}</version>
+        </dependency>
     </dependencies>
     <build>
         <plugins>
@@ -189,6 +214,20 @@
                 <version>${maven-release-plugin.version}</version>
                 <configuration>
                     <autoVersionSubmodules>true</autoVersionSubmodules>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.eclipse.jetty</groupId>
+                <artifactId>jetty-maven-plugin</artifactId>
+                <version>${jetty.version}</version>
+                <configuration>
+                    <scanIntervalSeconds>2</scanIntervalSeconds>
+                    <httpConnector>
+                        <port>9999</port>
+                    </httpConnector>
+                    <webApp>
+                        <contextPath>/</contextPath>
+                    </webApp>
                 </configuration>
             </plugin>
         </plugins>

@@ -1,8 +1,6 @@
 package com.terekhin.domain;
 
-import javax.persistence.Entity;
-import javax.persistence.ManyToMany;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.util.Collection;
 
 /**
@@ -12,8 +10,12 @@ import java.util.Collection;
 @Table(name="permissions")
 public class Permission implements IBaseModel {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
+    @Column(name="Name")
     private String name;
+    @Column(name="active")
     private boolean active;
     @ManyToMany(mappedBy = "permissions")
     private Collection<Group> groups;

@@ -22,7 +22,7 @@ public abstract class DAOService<T extends IBaseModel> implements IDAOService<T>
 
     private Class<T> persistentClass;
 
-    public DAOService(Class<T> persistentClass) {
+    public DAOService() {
         this.persistentClass = (Class<T>)((ParameterizedType) this.getClass().getGenericSuperclass()).getActualTypeArguments()[0];
     }
 

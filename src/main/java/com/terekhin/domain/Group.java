@@ -10,9 +10,12 @@ import java.util.Collection;
 @Table(name="groups")
 public class Group implements IBaseModel {
 
-
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
-    private String roleName;
+    @Column(name="Name")
+    private String groupName;
+    @Column(name="active")
     private boolean active;
 
     @ManyToMany(mappedBy = "userRoles")
@@ -26,12 +29,12 @@ public class Group implements IBaseModel {
         this.id = id;
     }
 
-    public String getRoleName() {
-        return roleName;
+    public String getGroupName() {
+        return groupName;
     }
 
-    public void setRoleName(String roleName) {
-        this.roleName = roleName;
+    public void setGroupName(String groupName) {
+        this.groupName = groupName;
     }
 
     public boolean isActive() {

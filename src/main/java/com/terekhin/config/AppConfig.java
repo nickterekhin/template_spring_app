@@ -10,7 +10,7 @@ public class AppConfig extends AbstractAnnotationConfigDispatcherServletInitiali
 
     @Override
     protected Class<?>[] getRootConfigClasses() {
-        return new Class<?>[0];
+        return new Class<?>[]{DBContextConfig.class,SecurityConfig.class};
     }
 
     @Override

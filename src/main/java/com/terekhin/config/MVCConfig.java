@@ -24,7 +24,6 @@ import org.thymeleaf.templateresolver.ITemplateResolver;
 @Configuration
 @EnableWebMvc
 @ComponentScan("com.terekhin")
-@Import({DataSourceConfig.class,HibernateConfig.class,DBTransactionConfig.class,AppPropertiesConfig.class})
 public class MVCConfig implements ApplicationContextAware, WebMvcConfigurer {
     private ApplicationContext applicationContext;
 
